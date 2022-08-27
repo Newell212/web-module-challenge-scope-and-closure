@@ -30,11 +30,16 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  counter2 has the variable declared outside the function while counter1 has the variable declared inside
+
   2. Which of the two uses a closure? How can you tell?
-  
+  counter1 because it preserved its outer scope in its inner scope
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
+     counter1 would be useful in a scenario that you needed to assign the value of function to a variable.
+     counter2 would be useful if wanted to reference the count variable in other places
 */
 
 // counter1 code
@@ -64,8 +69,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+   return Math.floor(Math.random() * 3)
+
+   
 }
 
 
@@ -83,9 +90,19 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, numOfInnings){
+  let homeScore = 0;
+  let awayScore = 0;
+  for(let i = 0; i < numOfInnings; i++) {
+    homeScore = homeScore + inningCB();
+    awayScore = awayScore + inningCB();
+  }
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
+
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -101,9 +118,14 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningCB) {
+  let homeScore = homeScore + inningCB();
+  let awayScore = awayScore + inningCB();
 
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
 
 
